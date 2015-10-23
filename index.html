@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset=utf-8 />
-<title>InSeason</title>
+<title>inSeason</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
@@ -11,11 +12,18 @@
 </style>
 </head>
 <body>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+<!--[if lt IE 9]>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+<![endif]-->
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+
 <div id='map'></div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
-var map = L.mapbox.map('map', 'inseason.nph6n91m')
-    .setView([40, -74.50], 9);
+    var map = L.mapbox.map('map', 'inseason.nphk0ji7');
+    L.control.locate().addTo(map);
 </script>
 </body>
 </html>
