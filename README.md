@@ -1,2 +1,0 @@
-# InSeason
-Website for InSeason
