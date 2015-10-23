@@ -251,8 +251,4 @@ _:-ms-input-placeholder, :root .demo-graph {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-
-  /*top:64px;
-  bottom:0px;
-  width:9%;*/
 }
