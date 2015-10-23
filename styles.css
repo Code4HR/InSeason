@@ -239,3 +239,5 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.map { position:absolute; top:0; bottom:0; width:100%; }
