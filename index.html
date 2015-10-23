@@ -1,7 +1,10 @@
 <html>
 <head>
-<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.light_green-red.min.css" /> 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
+<title>inSeason</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.light_green-red.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -64,7 +67,14 @@
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-
+        <div id='map'></div>
+        <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
+            var map = L.mapbox.map('map', 'inseason.nphk0ji7');
+            L.control.locate().addTo(map);
+        </script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       </main>
     </div>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
@@ -115,6 +125,7 @@
         </defs>
       </svg>
 <script src="/bower_components/material-design-lite/material.min.js"></script>
-</body>  
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+</body>
 
 </html>
