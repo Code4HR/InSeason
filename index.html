@@ -22,13 +22,19 @@
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">In Season</span>
                 <div class="mdl-layout-spacer"></div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" id="search" />
-                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                <input type="text" data-type="date" />
+                <div id="material-header-holder" style="display:block">
+                    <div class="ui-datepicker-material-header">
+                        <div class="ui-datepicker-material-day">
+                        </div>
+                        <div class="ui-datepicker-material-date">
+                            <div class="ui-datepicker-material-month">
+                            </div>
+                            <div class="ui-datepicker-material-day-num">
+                            </div>
+                            <div class="ui-datepicker-material-year">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
@@ -83,6 +89,59 @@
         L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
         var map = L.mapbox.map('map', 'inseason.nphk0ji7');
         L.control.locate().addTo(map);
+    </script>
+    <script>
+        var headerHtml = $("#material-header-holder .ui-datepicker-material-header");
+
+        var changeMaterialHeader = function (header, date) {
+            var year = date.format('YYYY');
+            var month = date.format('MMM');
+            var dayNum = date.format('D');
+            var isoDay = date.isoWeekday();
+
+            var weekday = new Array(7);
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            weekday[7] = "Sunday";
+
+            $('.ui-datepicker-material-day', header).text(weekday[isoDay]);
+            $('.ui-datepicker-material-year', header).text(year);
+            $('.ui-datepicker-material-month', header).text(month);
+            $('.ui-datepicker-material-day-num', header).text(dayNum);
+        };
+
+        $.datepicker._selectDateOverload = $.datepicker._selectDate;
+        $.datepicker._selectDate = function (id, dateStr) {
+            var target = $(id);
+            var inst = this._getInst(target[0]);
+            inst.inline = true;
+            $.datepicker._selectDateOverload(id, dateStr);
+            inst.inline = false;
+            this._updateDatepicker(inst);
+
+            headerHtml.remove();
+            $(".ui-datepicker").prepend(headerHtml);
+        };
+
+        $("input[data-type='date']").on("focus", function () {
+            $(".ui-datepicker").prepend(headerHtml);
+        });
+
+        $("input[data-type='date']").datepicker({
+            showButtonPanel: true,
+            closeText: 'OK',
+            onSelect: function (date, inst) {
+                changeMaterialHeader(headerHtml, moment(date));
+            },
+        });
+
+        changeMaterialHeader(headerHtml, moment());
+
+        $('input').datepicker('show');
     </script>
 </body>
 
