@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>inSeason</title>
@@ -15,6 +16,22 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://i.icomoon.io/public/temp/2934fb3ee6/UntitledProject/style.css">
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+    <style>
+        .map-legend .swatch {
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin-right: 10px;
+        }
+        
+        .leaflet-popup-close-button {
+            display: none;
+        }
+        
+        .leaflet-popup-content-wrapper {
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body onload="init()">
@@ -35,7 +52,7 @@
         </header>
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <header class="demo-drawer-header">
-                 <input class="mdl-textfield__input" type="text" id="calendar-date" value="" />
+                <input class="mdl-textfield__input" type="text" id="calendar-date" value="" />
             </header>
             <nav id="animalList" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
@@ -46,7 +63,8 @@
         </main>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="Scripts/ajax.js"></script>
+    <script src="./Scripts/ajax.js"></script>
+    <script src="./Scripts/states.js"></script>
     <script src="./bower_components/material-design-lite/material.min.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
@@ -56,12 +74,60 @@
             var d = new Date();
             $("#calendar-date").val(d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay());
         }
-        
+
+
         L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
         var map = L.mapbox.map('map', 'inseason.nphk0ji7', {
             minZoom: 5,
             maxZoom: 13
-        })
+        });
+        
+        var popup = new L.Popup({ autoPan: false });
+        
+        var statesLayer = L.geoJson(statesData, {
+            onEachFeature: onEachFeature
+        }).addTo(map);
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mousemove: mousemove,
+                mouseout: mouseout,
+                click: zoomToFeature
+            });
+        }
+
+        var closeTooltip;
+
+        function mousemove(e) {
+            var layer = e.target;
+
+            popup.setLatLng(e.latlng);
+            popup.setContent('<div class="marker-title">' + layer.feature.properties.name + '</div>' +
+                             '<div class="hover-content" id=county-"' + layer.feature.properties.county + '>' +
+                             '</div>'                            
+                            );
+            
+            
+            if (!popup._map) popup.openOn(map);
+            window.clearTimeout(closeTooltip);
+
+
+            if (!L.Browser.ie && !L.Browser.opera) {
+                layer.bringToFront();
+            }
+        }
+
+        function mouseout(e) {
+            statesLayer.resetStyle(e.target);
+            
+            closeTooltip = window.setTimeout(function () {
+                map.closePopup();
+            }, 100);
+        }
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
         L.control.locate().addTo(map);
     </script>
 
