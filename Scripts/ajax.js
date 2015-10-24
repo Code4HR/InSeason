@@ -5,6 +5,7 @@ $.getJSON('http://inseason.azurewebsites.net/animals', function (data) {
             var btn = $('<a id="' + value.human +'" class="mdl-navigation__link""><span class="icon-turkey material-icons" style="font-size: 2.5em"></span>' + value.human + '</a>')
             btn.click(function () {
               console.log($(this).attr("id"));
+              // $.getJSON("'http://inseason.azurewebsites.net/GetCounty/'+ $(this).attr("id")); + 'bear/2015-10-24/121'", function (data) {
             });
             $("#animalList").append(btn);
         } else if (value.key === "weasel") {
