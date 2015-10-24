@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://i.icomoon.io/public/temp/2934fb3ee6/UntitledProject/style.css">
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <style>
         .map-legend .swatch {
             width: 20px;
@@ -52,7 +53,7 @@
         </header>
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <header class="demo-drawer-header">
-                <input class="mdl-textfield__input" type="text" id="calendar-date" value="" />
+                <input class="mdl-textfield__input" type="date" id="calendar-date" value="" />
             </header>
             <nav id="animalList" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
@@ -69,10 +70,22 @@
     <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.1.0/leaflet-pip.min.js'></script>
+    <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
     <script>
         function init() {
-            var d = new Date();
-            $("#calendar-date").val(d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay());
+            $(document).ready(function () {
+                var date = new Date();
+
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+
+                if (month < 10) month = "0" + month;
+                if (day < 10) day = "0" + day;
+
+                var today = year + "-" + month + "-" + day;
+                $("#calendar-date").attr("value", today);
+            });
         }
 
 
@@ -81,9 +94,11 @@
             minZoom: 5,
             maxZoom: 13
         });
-        
-        var popup = new L.Popup({ autoPan: false });
-        
+
+        var popup = new L.Popup({
+            autoPan: false
+        });
+
         var statesLayer = L.geoJson(statesData, {
             onEachFeature: onEachFeature
         }).addTo(map);
@@ -103,11 +118,11 @@
 
             popup.setLatLng(e.latlng);
             popup.setContent('<div class="marker-title">' + layer.feature.properties.name + '</div>' +
-                             '<div class="hover-content" id=county-"' + layer.feature.properties.county + '>' +
-                             '</div>'                            
-                            );
-            
-            
+                '<div class="hover-content" id=county-"' + layer.feature.properties.county + '>' +
+                '</div>'
+            );
+
+
             if (!popup._map) popup.openOn(map);
             window.clearTimeout(closeTooltip);
 
@@ -119,7 +134,7 @@
 
         function mouseout(e) {
             statesLayer.resetStyle(e.target);
-            
+
             closeTooltip = window.setTimeout(function () {
                 map.closePopup();
             }, 100);
@@ -129,6 +144,13 @@
             map.fitBounds(e.target.getBounds());
         }
         L.control.locate().addTo(map);
+    </script>
+    <script>
+        if ($('#calendar-date').type != "date") { //if browser doesn't support input type="date", initialize date picker widget:
+            jQuery(function ($) { //on document.ready
+                $('#calendar-date').datepicker();
+            })
+        }
     </script>
 
 
