@@ -35,8 +35,6 @@
         </header>
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <header class="demo-drawer-header">
-
-              
             </header>
             <nav id="animalList" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
@@ -53,7 +51,11 @@
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
     <script>
         L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
-        var map = L.mapbox.map('map', 'inseason.nphk0ji7');
+        var map = L.mapbox.map('map', 'inseason.nphk0ji7', {
+            minZoom: 5,
+            maxZoom: 12,
+            maxBounds: [[30.0,-85.0],[50.0,-65.0]]
+        }).setView([40, -74.50], 9);
         L.control.locate().addTo(map);
     </script>
 
