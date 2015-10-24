@@ -1,0 +1,112 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?bob96h');
+	src:url('fonts/icomoon.eot?bob96h#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?bob96h') format('truetype'),
+		url('fonts/icomoon.woff?bob96h') format('woff'),
+		url('fonts/icomoon.svg?bob96h#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sea10:before {
+	content: "\4f";
+}
+.icon-squirrel1:before {
+	content: "\53";
+}
+.icon-racoon1:before {
+	content: "\52";
+}
+.icon-skunk:before {
+	content: "\4b";
+}
+.icon-quail:before {
+	content: "\51";
+}
+.icon-turkey6:before {
+	content: "\54";
+}
+.icon-rabbit5:before {
+	content: "\49";
+}
+.icon-opossum:before {
+	content: "\50";
+}
+.icon-mammal10:before {
+	content: "\4d";
+}
+.icon-animal91:before {
+	content: "\41";
+}
+.icon-mink .path1:before {
+	content: "\4e";
+	color: rgb(0, 0, 0);
+}
+.icon-mink .path2:before {
+	content: "\55";
+	margin-left: -1em;
+	color: rgb(0, 0, 0);
+}
+.icon-mink .path3:before {
+	content: "\56";
+	margin-left: -1em;
+	color: rgb(0, 0, 0);
+}
+.icon-mink .path4:before {
+	content: "\57";
+	margin-left: -1em;
+	color: rgb(255, 255, 255);
+}
+.icon-mink .path5:before {
+	content: "\58";
+	margin-left: -1em;
+	color: rgb(255, 255, 255);
+}
+.icon-mink .path6:before {
+	content: "\59";
+	margin-left: -1em;
+	color: rgb(0, 0, 0);
+}
+.icon-grouse:before {
+	content: "\47";
+}
+.icon-hill:before {
+	content: "\48";
+}
+.icon-wildlife1:before {
+	content: "\46";
+}
+.icon-deer5:before {
+	content: "\44";
+}
+.icon-corvus-corax:before {
+	content: "\43";
+}
+.icon-animal64:before {
+	content: "\4c";
+}
+.icon-panther:before {
+	content: "\45";
+}
+.icon-beaver1:before {
+	content: "\31";
+}
+.icon-bear13:before {
+	content: "\42";
+}
+
