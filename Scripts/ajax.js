@@ -2,7 +2,7 @@ $.getJSON('http://inseason.azurewebsites.net/animals', function(data) {
        $.each(data, function(key,value) {
          if(value.human =="Bear") {
            console.log("Bear");
-           $("#animalList").append('<a class="mdl-navigation__link" href=""><span class="icon-sea10"></span>'
+           $("#animalList").append('<a class="mdl-navigation__link" href=""><span class="icon-sea10 material-icons"></span>'
                                     + value.human + '</a>');
          }
          else if(value.human =="Beaver") {
