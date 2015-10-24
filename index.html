@@ -130,11 +130,34 @@
         var closeTooltip;
 
         function mousemove(e) {
+                    var temp = JSON.parse('[{"Season":{"name":"Firearms Bear Season","method_rules":["Special restrictions apply to specific firearms use during this season. See “Legal Use of Firearms and Archery Equipment” and “Local Firearms Ordinances” for details."],"method":["modern firearms","archery tackle","muzzleloading firearms"],"range":null,"comment":"Dogs May Not Be Used to Hunt Bear:\\n* During the first 14 hunting days of the firearms deer season in Madison and Greene counties.\\n* On Cavalier WMA dogs may only be used during the Bear Hound Training Season from August 9-31.\\n* On Sundays while in possession of a weapon. The meaning of “possession” for the purpose of this section shall include, but not be limited to, having a firearm, bow, crossbow, or any weapon capable of taking a black bear in or on one’s person, vehicle, or conveyance. (See exception for valid concealed handgun permit holders.)"},"LocalRestrictions":[{"gnis_id":"1674630","fips_code":"TK","restriction":"northwest of I-81"},{"gnis_id":"1674630","fips_code":"TK","restriction":"southeast of I-81"},{"gnis_id":"1674630","fips_code":"TK","restriction":"northwest of I-81 and west of Route 19"}]}]');
             var layer = e.target;
 
+            //if ( temp.length > 1 ) {
+            //    layer.setStyle({
+            //          opacity: 0.1,
+            //          fillColor: '#006600'
+            //    });
+            //} else {
+            //    layer.setStyle({
+            //          opacity: 0.1,
+            //          fillColor: '#FF0000'
+            //    });
+            //}
+
+            var content = "";
+            temp.forEach(function(entry) {
+                var season = entry.Season;
+                var local_restrictions = entry.LocalRestrictions;
+                content = season.comment;
+                
+                });
+
+            console.log(content);
             popup.setLatLng(e.latlng);
             popup.setContent('<div class="marker-title">' + layer.feature.properties.name + '</div>' +
                 '<div class="hover-content" id=county-"' + layer.feature.properties.county + '>' +
+                            + '<p>' + content + '</p>' +
                 '</div>'
             );
 
