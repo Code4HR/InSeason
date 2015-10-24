@@ -245,3 +245,7 @@ _:-ms-input-placeholder, :root .demo-graph {
  height: -webkit-calc(100% - 64px); /* Chrome, Safari */
  height: calc(100% - 64px);
 }
+
+.animal-icons {
+    font-size: 3em;
+}
