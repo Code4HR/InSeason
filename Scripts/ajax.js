@@ -26,7 +26,7 @@ $.getJSON('http://inseason.azurewebsites.net/animals', function (data) {
             });
             $("#animalList").append(btn);
         } else {
-            var btn = $('<a  id="' + value.human +'" class="mdl-navigation__link" onClick="toggle(val)"><span class="icon-' + value.key + ' material-icons" style="font-size: 2.5em"></span>' + value.human + '</a>')
+            var btn = $('<a  id="' + value.human +'" class="mdl-navigation__link""><span class="icon-' + value.key + ' material-icons" style="font-size: 2.5em"></span>' + value.human + '</a>')
             btn.click(function () {
               console.log($(this).attr("id"));
             });
