@@ -17,7 +17,7 @@
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
 </head>
 
-<body>
+<body onload="init()">
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
         <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
             <div class="mdl-layout__header-row">
@@ -35,6 +35,7 @@
         </header>
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <header class="demo-drawer-header">
+                 <input class="mdl-textfield__input" type="text" id="calendar-date" value="" />
             </header>
             <nav id="animalList" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
@@ -46,11 +47,16 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="Scripts/ajax.js"></script>
-    <script src="/bower_components/material-design-lite/material.min.js"></script>
+    <script src="./bower_components/material-design-lite/material.min.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.1.0/leaflet-pip.min.js'></script>
     <script>
+        function init() {
+            var d = new Date();
+            $("#calendar-date").val(d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay());
+        }
+        
         L.mapbox.accessToken = 'pk.eyJ1IjoiaW5zZWFzb24iLCJhIjoiY2lnM3h4YTc5MjdwYnR3bHZhMnJwbXA3OSJ9.BrDFAx3o2wZ3oz2EnJvfPw';
         var map = L.mapbox.map('map', 'inseason.nphk0ji7', {
             minZoom: 5,
